@@ -1,10 +1,17 @@
 import "./gameOver.css";
 
-const GameOver = () => {
+interface data{
+    score: number,
+    retry: any
+}
+
+const GameOver = ( prop:data) => {
 
     return(
         <div>
-        <h2>Game Over</h2>
+        <h1>Fim de Jogo</h1>
+        <h2> A sua pontuação foi: <span>{prop.score}</span></h2>
+        <button onClick={prop.retry}>Reiniciar Jogo</button>
         </div>
     );
 };

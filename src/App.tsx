@@ -13,6 +13,9 @@ function App() {
     { id: 3, name: "end" },
   ];
 
+  const guessesQty = 3;
+  const initialScore = 100;
+
   const [words] = useState(worddList);
   const [pickedWord, setPickedWord] = useState<string[]>([]);
   const [pickedCategory, setPickedCategory] = useState("");
@@ -20,12 +23,12 @@ function App() {
 
   const [guessedLetters, setGuessedLetters] = useState<string[]>([]);
   const [wrongLetters, setWrongLetters] = useState<string[]>([]);
-  const [guesses, setGuesses] = useState(1);
-  const [score, setScore] = useState(3);
+  const [guesses, setGuesses] = useState(guessesQty);
+  const [score, setScore] = useState(initialScore);
 
   const [gameStage, setGameStage] = useState(stages[0].name);
 
-  function pickWordAndCategory() {
+  const pickWordAndCategory = () => {
     const categories = Object.keys(words);
     const category =
       categories[Math.floor(Math.random() * Object.keys(categories).length)];
@@ -34,7 +37,7 @@ function App() {
       words[category][Math.floor(Math.random() * words[category].length)];
 
     return { word, category };
-  }
+  };
 
   const startGame = () => {
     const { word, category } = pickWordAndCategory();
@@ -50,7 +53,7 @@ function App() {
     setGameStage(stages[1].name);
   };
 
-  function verifiyLetter(letter: string) {
+  const verifiyLetter = (letter: string) => {
     const normalizedLetter = letter.toLocaleLowerCase();
 
     if (
@@ -70,9 +73,32 @@ function App() {
         ...actualWrongLetters,
         normalizedLetter,
       ]);
-    }
-  }
 
+      setGuesses((actualGueses) => actualGueses - 1);
+    }
+    console.log(guesses);
+  };
+
+  const retry = () => {
+    clearLetterStates();
+    setGameStage(stages[0].name);
+    setGuesses(guessesQty);
+    setScore(initialScore);
+  };
+
+  const clearLetterStates = () => {
+    setGuessedLetters([]);
+    setWrongLetters([]);
+  };
+
+  useEffect(() => {
+    if (guesses === 0) {
+      setGameStage(stages[2].name);
+      console.log("useEfect fazendo merda");
+    }
+  }),
+    [guesses];
+  console.log(gameStage);
   return (
     <div className="App">
       {gameStage === "start" && <StartScreen startGame={startGame} />}
@@ -88,7 +114,7 @@ function App() {
           score={score}
         />
       )}
-      {gameStage === "end" && <GameOver />}
+      {gameStage === "end" && <GameOver score={score} retry={retry} />}
     </div>
   );
 }

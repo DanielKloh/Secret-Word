@@ -21,7 +21,7 @@ const Game = (prop: data) => {
     e.preventDefault();
     prop.verifiyLetter(letter);
     setLetter("");
-    letterInputRef.current.focus();
+    letterInputRef.current.focus();  
   };
   return (
     <div className="game">
