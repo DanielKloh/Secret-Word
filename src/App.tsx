@@ -81,7 +81,7 @@ function App() {
 
   const retry = () => {
     clearLetterStates();
-    setGameStage(stages[0].name); 
+    setGameStage(stages[0].name);
     setGuesses(guessesQty);
     setScore(initialScore);
   };
@@ -98,6 +98,7 @@ function App() {
     }
   }),
     [guesses];
+    
   console.log(gameStage);
   return (
     <div className="App">
