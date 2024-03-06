@@ -28,7 +28,7 @@ function App() {
 
   const [gameStage, setGameStage] = useState(stages[0].name);
 
-  const pickWordAndCategory = () => {
+  const pickWordAndCategory = useCallback(() => {
     const categories = Object.keys(words);
     const category =
       categories[Math.floor(Math.random() * Object.keys(categories).length)];
@@ -37,9 +37,10 @@ function App() {
       words[category][Math.floor(Math.random() * words[category].length)];
 
     return { word, category };
-  };
+  },[words]);
 
-  const startGame = () => {
+  const startGame = useCallback(() => {
+    clearLetterStates();
     const { word, category } = pickWordAndCategory();
 
     let wordLetters = word.split("");
@@ -51,7 +52,7 @@ function App() {
     setLetters(wordLetters);
 
     setGameStage(stages[1].name);
-  };
+  },[pickWordAndCategory]);
 
   const verifiyLetter = (letter: string) => {
     const normalizedLetter = letter.toLocaleLowerCase();
@@ -76,7 +77,6 @@ function App() {
 
       setGuesses((actualGueses) => actualGueses - 1);
     }
-    console.log(guesses);
   };
 
   const retry = () => {
@@ -94,12 +94,18 @@ function App() {
   useEffect(() => {
     if (guesses === 0) {
       setGameStage(stages[2].name);
-      console.log("useEfect fazendo merda");
     }
   }),
-    [guesses];
-    
-  console.log(gameStage);
+    [guessedLetters, letters, startGame];
+
+  useEffect(() => {
+    const uniqueLetters = [...new Set(letters)];
+
+    if (guessedLetters.length === uniqueLetters.length) {
+      setScore((actualyScore: any) => actualyScore + 100);
+      startGame();
+    }
+  }, [guessedLetters]);
   return (
     <div className="App">
       {gameStage === "start" && <StartScreen startGame={startGame} />}

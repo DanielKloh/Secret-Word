@@ -13,7 +13,6 @@ interface data {
 }
 
 const Game = (prop: data) => {
-  console.log(prop);
   const [letter, setLetter] = useState("");
   const letterInputRef = useRef(null);
 
