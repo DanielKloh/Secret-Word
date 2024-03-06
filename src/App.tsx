@@ -37,7 +37,7 @@ function App() {
       words[category][Math.floor(Math.random() * words[category].length)];
 
     return { word, category };
-  },[words]);
+  }, [words]);
 
   const startGame = useCallback(() => {
     clearLetterStates();
@@ -52,7 +52,7 @@ function App() {
     setLetters(wordLetters);
 
     setGameStage(stages[1].name);
-  },[pickWordAndCategory]);
+  }, [pickWordAndCategory]);
 
   const verifiyLetter = (letter: string) => {
     const normalizedLetter = letter.toLocaleLowerCase();
