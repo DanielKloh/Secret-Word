@@ -13,7 +13,7 @@ body {
 }
 
 button {
-  background-color: #1646a0;
+  background-color: #127369;
   color: #fff;
   padding: 0 45px;
   border: 2px solid #fff;
@@ -27,5 +27,5 @@ button {
 }
 
 button:hover {
-  background: #0923af;
+  background: #10403B;
 }

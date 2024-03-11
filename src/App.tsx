@@ -33,7 +33,7 @@ function App() {
     const category =
       categories[Math.floor(Math.random() * Object.keys(categories).length)];
 
-    const word =
+    const word = // @ts-ignore
       words[category][Math.floor(Math.random() * words[category].length)];
 
     return { word, category };
@@ -101,11 +101,15 @@ function App() {
   useEffect(() => {
     const uniqueLetters = [...new Set(letters)];
 
-    if (guessedLetters.length === uniqueLetters.length) {
+    if (
+      guessedLetters.length === uniqueLetters.length &&
+      gameStage === "game"
+    ) {
       setScore((actualyScore: any) => actualyScore + 100);
       startGame();
     }
   }, [guessedLetters]);
+
   return (
     <div className="App">
       {gameStage === "start" && <StartScreen startGame={startGame} />}

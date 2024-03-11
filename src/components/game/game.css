@@ -1,51 +1,60 @@
 .game h1 {
-    font-size: 2.5em;
-  }
-  
-  .points span {
-    font-weight: bold;
-  }
-  
-  .tip span {
-    color: #ecfa00; 
-  }
-  
-  .wordContainer {
-    margin: 1.5em;
-    padding: 1.5em;
-    border: 20px solid #ecfa00;
-    display: flex;
-    background-color: pink;
-    color: white;
-  }
-  
-  .letter,
-  .blankSquare {
-    font-size: 70px;
-    line-height: 1.5;
-    border: 3px solid #000;
-    height: 100px;
-    width: 100px;
-    text-transform: uppercase;
-    background-color: #fff;
-    color: #000;
-    font-weight: bold;
-  }
-  
-  .letterContainer p {
-    margin-bottom: 1.2em;
-  }
-  
-  .letterContainer form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .letterContainer input {
-    height: 50px;
-    width: 50px;
-    font-size: 2em;
-    text-align: center;
-    margin-right: 1em;
-  }
+  font-size: 2.5em;
+}
+
+.points span {
+  font-weight: bold;
+}
+
+.tip span {
+  color: #127369;
+}
+
+.wordContainer {
+  margin: 1.5em;
+  padding: 1.5em;
+  border: 20px solid #127369;
+  display: flex;
+  background-color: #10403B;
+  color: white;
+}
+
+.letter,
+.blankSquare {
+  font-size: 70px;
+  line-height: 1.5;
+  border: 3px solid #000;
+  height: 100px;
+  width: 100px;
+  text-transform: uppercase;
+  background-color: #fff;
+  color: #000;
+  font-weight: bold;
+}
+
+.letterContainer p {
+  margin-bottom: 1.2em;
+}
+
+.letterContainer form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.letterContainer input {
+  height: 50px;
+  width: 50px;
+  font-size: 2em;
+  text-align: center;
+  margin-right: 1em;
+}
+
+input:focus {
+  border-color: #10403B;
+  /* Cor da borda quando o input está em foco */
+  outline: none;
+  /* Remove a borda padrão de foco (pode variar dependendo do navegador) */
+  border: 2px solid #10403B;
+
+}

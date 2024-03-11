@@ -13,13 +13,14 @@ interface data {
 }
 
 const Game = (prop: data) => {
+
   const [letter, setLetter] = useState("");
   const letterInputRef = useRef(null);
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     prop.verifiyLetter(letter);
-    setLetter("");
+    setLetter(""); //@ts-ignore
     letterInputRef.current.focus();  
   };
   return (
@@ -50,7 +51,7 @@ const Game = (prop: data) => {
           <input
             type="text"
             name="letter"
-            // maxLength="1"
+            maxLength={1}
             onChange={(e) => setLetter(e.target.value)}
             required
             value={letter}
