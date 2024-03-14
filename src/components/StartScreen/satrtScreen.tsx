@@ -1,7 +1,7 @@
 import "./startScreen.css";
 
 interface data{
-    startGame?: any,
+    startGame: any,
 }
 
 const StartScreen = (prop:data) => {

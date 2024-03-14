@@ -3,17 +3,17 @@ import "./game.css";
 
 interface data {
   pickedWord: string[];
-  pickedCategory: any;
-  letters: any;
-  guessedLetters: any;
-  wrongLetters: any;
-  guesses: any;
-  score: any;
+  pickedCategory: string;
+  letters: string[];
+  guessedLetters: string[];
+  wrongLetters: string[];
+  guesses: number;
+  score: number;
   verifiyLetter: any;
 }
 
 const Game = (prop: data) => {
-
+console.log(prop);
   const [letter, setLetter] = useState("");
   const letterInputRef = useRef(null);
 
@@ -34,7 +34,7 @@ const Game = (prop: data) => {
       </h3>
       <p>Você ainda tem {prop.guesses} tentativa(s).</p>
       <div className="wordContainer">
-        {prop.letters.map((letter: string, i: any) =>
+        {prop.letters.map((letter: string, i: number) =>
           prop.guessedLetters.includes(letter) ? (
             <span className="letter" key={i}>
               {letter}
@@ -62,7 +62,7 @@ const Game = (prop: data) => {
       </div>
       <div className="wrongLettersContainer">
         <p>Letras já utilizadas:</p>
-        {prop.wrongLetters.map((letter: any, i: any) => (
+        {prop.wrongLetters.map((letter: string, i: number) => (
           <span key={i}>{letter}, </span>
         ))}
       </div>
